@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Trophy, LayoutDashboard } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { Trophy, LayoutDashboard, Flag } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export function Header() {
   return (
@@ -23,14 +23,21 @@ export function Header() {
               Dashboard
             </Link>
             <Link
-              to="/leaderboard"
+              to="/community/leaderboard"
               className="transition-colors hover:text-foreground/80 text-foreground flex items-center gap-2"
             >
               <Trophy className="h-4 w-4" />
               Leaderboard
             </Link>
+            <Link
+              to="/community/challenges"
+              className="transition-colors hover:text-foreground/80 text-foreground flex items-center gap-2"
+            >
+              <Flag className="h-4 w-4" />
+              Challenges
+            </Link>
           </nav>
-          <ThemeToggle />
+          <ModeToggle />
         </div>
       </div>
     </header>
