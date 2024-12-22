@@ -4,11 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, GitCommit, Calendar, Award } from "lucide-react";
+import { toast } from "sonner";
+import { postGithubCheckIn } from "@/services/github";
+import { handleCheckIn } from "@/services/streaks";
 import type { User } from "@supabase/supabase-js";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
+  const [isChecking, setIsChecking] = useState(false);
+  const [stats, setStats] = useState({
+    currentStreak: 0,
+    longestStreak: 0,
+    todayCommits: 0,
+    achievements: 0,
+  });
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -17,8 +27,76 @@ const Dashboard = () => {
         return;
       }
       setUser(session.user);
+      fetchStats(session.user.id);
     });
   }, [navigate]);
+
+  const fetchStats = async (userId: string) => {
+    try {
+      const { data: streakData } = await supabase
+        .from('streaks')
+        .select()
+        .eq('user_id', userId)
+        .single();
+
+      const { data: achievementsData } = await supabase
+        .from('user_achievements')
+        .select('*')
+        .eq('user_id', userId);
+
+      setStats({
+        currentStreak: streakData?.current_streak || 0,
+        longestStreak: streakData?.longest_streak || 0,
+        todayCommits: 0, // This could be fetched from GitHub API in a future enhancement
+        achievements: achievementsData?.length || 0,
+      });
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
+  };
+
+  const handleCheckInClick = async () => {
+    if (!user) return;
+    setIsChecking(true);
+
+    try {
+      // Create celebration animation element
+      const celebration = document.createElement('div');
+      celebration.className = 'fixed inset-0 flex items-center justify-center z-50 pointer-events-none';
+      celebration.innerHTML = `
+        <div class="animate-bounce text-6xl">
+          🎉
+        </div>
+      `;
+      document.body.appendChild(celebration);
+
+      // Update Supabase
+      const result = await handleCheckIn(user.id);
+      
+      if (result.status === 'already_checked_in') {
+        toast.error("You've already checked in today!");
+        return;
+      }
+
+      // Post to GitHub
+      await postGithubCheckIn(user.id);
+
+      // Update local stats
+      await fetchStats(user.id);
+
+      toast.success("Successfully checked in! Keep up the great work! 🚀");
+
+      // Remove celebration after animation
+      setTimeout(() => {
+        document.body.removeChild(celebration);
+      }, 2000);
+    } catch (error) {
+      console.error('Check-in error:', error);
+      toast.error("Failed to check in. Please try again.");
+    } finally {
+      setIsChecking(false);
+    }
+  };
 
   if (!user) return null;
 
@@ -37,7 +115,7 @@ const Dashboard = () => {
               <Trophy className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">7 days</div>
+              <div className="text-2xl font-bold">{stats.currentStreak} days</div>
             </CardContent>
           </Card>
 
@@ -47,7 +125,7 @@ const Dashboard = () => {
               <GitCommit className="h-4 w-4 text-secondary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">5</div>
+              <div className="text-2xl font-bold">{stats.todayCommits}</div>
             </CardContent>
           </Card>
 
@@ -57,7 +135,7 @@ const Dashboard = () => {
               <Calendar className="h-4 w-4 text-accent" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">15 days</div>
+              <div className="text-2xl font-bold">{stats.longestStreak} days</div>
             </CardContent>
           </Card>
 
@@ -67,14 +145,19 @@ const Dashboard = () => {
               <Award className="h-4 w-4 text-destructive" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">3</div>
+              <div className="text-2xl font-bold">{stats.achievements}</div>
             </CardContent>
           </Card>
         </div>
 
         <div className="mb-8">
-          <Button size="lg" className="w-full md:w-auto">
-            Check-in Today
+          <Button 
+            size="lg" 
+            className="w-full md:w-auto"
+            onClick={handleCheckInClick}
+            disabled={isChecking}
+          >
+            {isChecking ? "Checking in..." : "Check-in Today"}
           </Button>
         </div>
       </div>
