@@ -39,13 +39,13 @@ const Leaderboard = () => {
           id,
           username,
           full_name,
-          streaks (
+          streaks!inner (
             current_streak,
             longest_streak,
             total_check_ins
           )
         `)
-        .order('total_check_ins', { ascending: false })
+        .order('streaks.longest_streak', { ascending: false })
         .limit(100);
 
       if (error) throw error;
@@ -54,9 +54,9 @@ const Leaderboard = () => {
         id: user.id,
         username: user.username,
         full_name: user.full_name,
-        current_streak: user.streaks?.current_streak || 0,
-        longest_streak: user.streaks?.longest_streak || 0,
-        total_check_ins: user.streaks?.total_check_ins || 0
+        current_streak: user.streaks.current_streak,
+        longest_streak: user.streaks.longest_streak,
+        total_check_ins: user.streaks.total_check_ins
       }));
 
       setUsers(formattedData);

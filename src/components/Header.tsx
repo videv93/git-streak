@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { Trophy } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Trophy, LayoutDashboard } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {
@@ -9,13 +8,18 @@ export function Header() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link className="mr-6 flex items-center space-x-2" to="/">
-            <span className="font-bold sm:inline-block">GitStreak</span>
+            <h1 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold text-xl">
+              GitStreak
+            </h1>
           </Link>
+        </div>
+        <div className="flex flex-1 items-center justify-between space-x-6 md:justify-end">
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <Link
               to="/dashboard"
-              className="transition-colors hover:text-foreground/80 text-foreground"
+              className="transition-colors hover:text-foreground/80 text-foreground flex items-center gap-2"
             >
+              <LayoutDashboard className="h-4 w-4" />
               Dashboard
             </Link>
             <Link
@@ -26,8 +30,6 @@ export function Header() {
               Leaderboard
             </Link>
           </nav>
-        </div>
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <ThemeToggle />
         </div>
       </div>
