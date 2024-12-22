@@ -45,11 +45,13 @@ export const PricingPlans = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-slate-900/50">
+    <section className="py-20 px-4 bg-gradient-to-r from-purple-600/5 to-pink-500/5">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+            Simple, Transparent Pricing
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Choose the plan that best fits your needs. All plans include access to our core features.
           </p>
         </div>
@@ -59,21 +61,25 @@ export const PricingPlans = () => {
               key={index}
               className={`p-8 rounded-lg border ${
                 index === 1
-                  ? "border-primary bg-primary/10 relative overflow-hidden"
-                  : "border-slate-700 bg-slate-800/50"
+                  ? "border-purple-500/30 bg-purple-500/10 relative overflow-hidden"
+                  : "border-purple-200/20 bg-purple-500/5"
               }`}
             >
               {index === 1 && (
-                <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-sm rounded-bl-lg">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-3 py-1 text-sm rounded-bl-lg">
                   Popular
                 </div>
               )}
               <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-slate-400 mb-4">{plan.description}</p>
+                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+                  {plan.name}
+                </h3>
+                <p className="text-muted-foreground mb-4">{plan.description}</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-slate-400">
+                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+                    {plan.price}
+                  </span>
+                  <span className="text-muted-foreground">
                     {plan.period || "/month"}
                   </span>
                 </div>
@@ -81,14 +87,16 @@ export const PricingPlans = () => {
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                    <span>{feature}</span>
+                    <Check className="h-5 w-5 text-purple-500 mt-0.5 shrink-0" />
+                    <span className="text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
               <Button
                 className={`w-full ${
-                  index === 1 ? "bg-primary" : "bg-slate-700 hover:bg-slate-600"
+                  index === 1
+                    ? "bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
+                    : "bg-purple-500/10 hover:bg-purple-500/20 text-purple-500"
                 }`}
               >
                 Get Started

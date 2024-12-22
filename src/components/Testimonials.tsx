@@ -22,20 +22,24 @@ export const Testimonials = () => {
   return (
     <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">What Developers Say</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+          What Developers Say
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="p-6 rounded-lg border border-slate-700 bg-slate-800/50"
+              className="p-6 rounded-lg border border-purple-200/20 bg-purple-500/5 hover:bg-purple-500/10 transition-colors"
             >
-              <Quote className="h-8 w-8 text-primary mb-4" />
-              <p className="text-lg mb-6">{testimonial.quote}</p>
+              <Quote className="h-8 w-8 text-purple-500 mb-4" />
+              <p className="text-lg mb-6 text-muted-foreground">{testimonial.quote}</p>
               <div className="flex items-center gap-3">
-                <UserRound className="h-10 w-10 text-slate-400" />
+                <UserRound className="h-10 w-10 text-purple-500" />
                 <div>
-                  <p className="font-semibold">{testimonial.author}</p>
-                  <p className="text-sm text-slate-400">{testimonial.role}</p>
+                  <p className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+                    {testimonial.author}
+                  </p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </div>
             </div>
