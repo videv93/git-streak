@@ -1,31 +1,25 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
-import Index from "./pages/Index";
-import Dashboard from "./pages/Dashboard";
+import Index from "@/pages/Index";
+import Dashboard from "@/pages/Dashboard";
+import Profile from "@/pages/Profile";
+import { Toaster } from "@/components/ui/toaster";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="gitstreak-theme">
-      <TooltipProvider>
+function App() {
+  return (
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile/:username" element={<Profile />} />
+        </Routes>
         <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      </Router>
     </ThemeProvider>
-  </QueryClientProvider>
-);
+  );
+}
 
 export default App;
