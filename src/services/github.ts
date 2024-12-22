@@ -36,7 +36,14 @@ export const postGithubCheckIn = async (userId: string) => {
 
 const getRepository = async (accessToken: string) => {
   try {
-    const response = await fetch(`https://api.github.com/repos/${getUserName()}/${REPO_NAME}`, {
+    const { data: { session } } = await supabase.auth.getSession();
+    const username = session?.user?.user_metadata?.user_name;
+    
+    if (!username) {
+      throw new Error("No GitHub username found");
+    }
+
+    const response = await fetch(`https://api.github.com/repos/${username}/${REPO_NAME}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
@@ -131,9 +138,4 @@ const createOrUpdateFile = async (
   }
 
   return await response.json();
-};
-
-const getUserName = () => {
-  const session = supabase.auth.getSession();
-  return session?.user?.user_metadata?.user_name || '';
 };

@@ -7,6 +7,7 @@ import { Trophy, GitCommit, Calendar, Award } from "lucide-react";
 import { toast } from "sonner";
 import { postGithubCheckIn } from "@/services/github";
 import { handleCheckIn } from "@/services/streaks";
+import { ContributionGrid } from "@/components/ContributionGrid";
 import type { User } from "@supabase/supabase-js";
 
 const Dashboard = () => {
@@ -19,6 +20,7 @@ const Dashboard = () => {
     todayCommits: 0,
     achievements: 0,
   });
+  const [contributionData, setContributionData] = useState<number[]>(Array(365).fill(0));
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -28,6 +30,7 @@ const Dashboard = () => {
       }
       setUser(session.user);
       fetchStats(session.user.id);
+      fetchContributions(session.user.id);
     });
   }, [navigate]);
 
@@ -47,11 +50,36 @@ const Dashboard = () => {
       setStats({
         currentStreak: streakData?.current_streak || 0,
         longestStreak: streakData?.longest_streak || 0,
-        todayCommits: 0, // This could be fetched from GitHub API in a future enhancement
+        todayCommits: 0,
         achievements: achievementsData?.length || 0,
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
+    }
+  };
+
+  const fetchContributions = async (userId: string) => {
+    try {
+      const { data: checkIns } = await supabase
+        .from('check_ins')
+        .select('*')
+        .eq('user_id', userId)
+        .order('check_in_date', { ascending: false })
+        .limit(365);
+
+      const contributions = Array(365).fill(0);
+      checkIns?.forEach((checkIn) => {
+        const daysAgo = Math.floor(
+          (Date.now() - new Date(checkIn.check_in_date).getTime()) / (1000 * 60 * 60 * 24)
+        );
+        if (daysAgo >= 0 && daysAgo < 365) {
+          contributions[daysAgo] = checkIn.commit_count || 1;
+        }
+      });
+
+      setContributionData(contributions.reverse());
+    } catch (error) {
+      console.error('Error fetching contributions:', error);
     }
   };
 
@@ -60,7 +88,6 @@ const Dashboard = () => {
     setIsChecking(true);
 
     try {
-
       // Update Supabase
       const result = await handleCheckIn(user.id);
       
@@ -72,8 +99,9 @@ const Dashboard = () => {
       // Post to GitHub repository
       await postGithubCheckIn(user.id);
 
-      // Update local stats
+      // Update local stats and contributions
       await fetchStats(user.id);
+      await fetchContributions(user.id);
 
       // Create celebration animation element
       const celebration = document.createElement('div');
@@ -150,6 +178,15 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Contribution History</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ContributionGrid data={contributionData} />
+          </CardContent>
+        </Card>
 
         <div className="mb-8">
           <Button 
