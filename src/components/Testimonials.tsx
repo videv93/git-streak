@@ -20,23 +20,23 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+        <h2 className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">
           What Developers Say
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="p-6 rounded-lg border border-blue-200/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors"
+              className="p-6 rounded-lg border border-blue-200/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors dark:border-blue-400/20 dark:bg-blue-950/30 dark:hover:bg-blue-950/50"
             >
-              <Quote className="h-8 w-8 text-blue-500 mb-4" />
+              <Quote className="h-8 w-8 text-blue-400 dark:text-blue-300 mb-4" />
               <p className="text-lg mb-6 text-muted-foreground">{testimonial.quote}</p>
               <div className="flex items-center gap-3">
-                <UserRound className="h-10 w-10 text-blue-500" />
+                <UserRound className="h-10 w-10 text-blue-400 dark:text-blue-300" />
                 <div>
-                  <p className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+                  <p className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">
                     {testimonial.author}
                   </p>
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>

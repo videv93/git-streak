@@ -45,10 +45,10 @@ export const PricingPlans = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-r from-blue-600/5 to-blue-400/5">
+    <section className="py-20 px-4 bg-gradient-to-r from-blue-600/5 to-blue-400/5 dark:from-blue-950/50 dark:to-blue-900/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">
             Simple, Transparent Pricing
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -59,24 +59,24 @@ export const PricingPlans = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`p-8 rounded-lg border ${
+              className={`p-8 rounded-lg ${
                 index === 1
-                  ? "border-blue-500/30 bg-blue-500/10 relative overflow-hidden"
-                  : "border-blue-200/20 bg-blue-500/5"
+                  ? "border-blue-500/30 bg-blue-500/10 dark:border-blue-400/30 dark:bg-blue-950/30 relative overflow-hidden"
+                  : "border-blue-200/20 bg-blue-500/5 dark:border-blue-400/20 dark:bg-blue-950/20"
               }`}
             >
               {index === 1 && (
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-600 to-blue-400 text-white px-3 py-1 text-sm rounded-bl-lg">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-500 dark:to-blue-300 text-white px-3 py-1 text-sm rounded-bl-lg">
                   Popular
                 </div>
               )}
               <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">
                   {plan.name}
                 </h3>
                 <p className="text-muted-foreground mb-4">{plan.description}</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500">
                     {plan.price}
                   </span>
                   <span className="text-muted-foreground">
@@ -87,7 +87,7 @@ export const PricingPlans = () => {
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                    <Check className="h-5 w-5 text-blue-400 dark:text-blue-300 mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{feature}</span>
                   </li>
                 ))}
@@ -95,8 +95,8 @@ export const PricingPlans = () => {
               <Button
                 className={`w-full ${
                   index === 1
-                    ? "bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
-                    : "bg-blue-500/10 hover:bg-blue-500/20 text-blue-500"
+                    ? "bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 dark:from-blue-500 dark:to-blue-300 dark:hover:from-blue-600 dark:hover:to-blue-400"
+                    : "bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 dark:bg-blue-950/30 dark:hover:bg-blue-950/50 dark:text-blue-300"
                 }`}
               >
                 Get Started
