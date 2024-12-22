@@ -38,7 +38,7 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-4 cursor-pointer" onClick={handleHomeClick}>
-          <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+          <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-green-400">
             GitStreak
           </h1>
         </div>
@@ -46,7 +46,7 @@ export const Header = () => {
           {user ? (
             <Button 
               variant="default" 
-              className="bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
+              className="bg-blue-600 hover:bg-blue-700"
               onClick={() => navigate("/dashboard")}
             >
               Dashboard
@@ -54,7 +54,7 @@ export const Header = () => {
           ) : (
             <Button 
               onClick={handleGithubLogin} 
-              className="group bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
+              className="group bg-blue-600 hover:bg-blue-700"
             >
               <Github className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
               Login with GitHub
