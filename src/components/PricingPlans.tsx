@@ -45,10 +45,10 @@ export const PricingPlans = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-r from-purple-600/5 to-pink-500/5">
+    <section className="py-20 px-4 bg-gradient-to-r from-blue-600/5 to-blue-400/5">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
             Simple, Transparent Pricing
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -61,22 +61,22 @@ export const PricingPlans = () => {
               key={index}
               className={`p-8 rounded-lg border ${
                 index === 1
-                  ? "border-purple-500/30 bg-purple-500/10 relative overflow-hidden"
-                  : "border-purple-200/20 bg-purple-500/5"
+                  ? "border-blue-500/30 bg-blue-500/10 relative overflow-hidden"
+                  : "border-blue-200/20 bg-blue-500/5"
               }`}
             >
               {index === 1 && (
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-3 py-1 text-sm rounded-bl-lg">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-600 to-blue-400 text-white px-3 py-1 text-sm rounded-bl-lg">
                   Popular
                 </div>
               )}
               <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
                   {plan.name}
                 </h3>
                 <p className="text-muted-foreground mb-4">{plan.description}</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+                  <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
                     {plan.price}
                   </span>
                   <span className="text-muted-foreground">
@@ -87,7 +87,7 @@ export const PricingPlans = () => {
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-purple-500 mt-0.5 shrink-0" />
+                    <Check className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                     <span className="text-muted-foreground">{feature}</span>
                   </li>
                 ))}
@@ -95,8 +95,8 @@ export const PricingPlans = () => {
               <Button
                 className={`w-full ${
                   index === 1
-                    ? "bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
-                    : "bg-purple-500/10 hover:bg-purple-500/20 text-purple-500"
+                    ? "bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
+                    : "bg-blue-500/10 hover:bg-blue-500/20 text-blue-500"
                 }`}
               >
                 Get Started
