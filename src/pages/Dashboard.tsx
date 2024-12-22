@@ -78,7 +78,7 @@ const Dashboard = () => {
         return;
       }
 
-      // Post to GitHub
+      // Post to GitHub repository
       await postGithubCheckIn(user.id);
 
       // Update local stats
