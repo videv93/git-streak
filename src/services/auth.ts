@@ -1,11 +1,23 @@
+import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
-// This is a mock implementation. In a real app, you would integrate with GitHub OAuth
 export const loginWithGithub = async () => {
   try {
-    // In a real implementation, this would redirect to GitHub OAuth
-    console.log("Initiating GitHub login...");
-    toast.info("GitHub integration coming soon!");
+    console.log("Initiating GitHub login with Supabase...");
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`
+      }
+    });
+
+    if (error) {
+      console.error("GitHub login error:", error.message);
+      toast.error("Failed to login with GitHub");
+      throw error;
+    }
+
+    console.log("GitHub login initiated:", data);
   } catch (error) {
     console.error("GitHub login error:", error);
     toast.error("Failed to login with GitHub");
