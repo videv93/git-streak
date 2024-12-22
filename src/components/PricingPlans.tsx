@@ -21,7 +21,7 @@ export const PricingPlans = () => {
       description: "For developers who want advanced features and analytics",
       features: [
         "Advanced analytics",
-        "Streak protection",
+        "Automated check-ins",
         "API access",
         "Custom badges",
         "Ad-free experience",
