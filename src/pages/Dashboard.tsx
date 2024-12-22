@@ -60,15 +60,6 @@ const Dashboard = () => {
     setIsChecking(true);
 
     try {
-      // Create celebration animation element
-      const celebration = document.createElement('div');
-      celebration.className = 'fixed inset-0 flex items-center justify-center z-50 pointer-events-none';
-      celebration.innerHTML = `
-        <div class="animate-bounce text-6xl">
-          🎉
-        </div>
-      `;
-      document.body.appendChild(celebration);
 
       // Update Supabase
       const result = await handleCheckIn(user.id);
@@ -83,6 +74,16 @@ const Dashboard = () => {
 
       // Update local stats
       await fetchStats(user.id);
+
+      // Create celebration animation element
+      const celebration = document.createElement('div');
+      celebration.className = 'fixed inset-0 flex items-center justify-center z-50 pointer-events-none';
+      celebration.innerHTML = `
+        <div class="animate-bounce text-6xl">
+          🎉
+        </div>
+      `;
+      document.body.appendChild(celebration);
 
       toast.success("Successfully checked in! Keep up the great work! 🚀");
 
