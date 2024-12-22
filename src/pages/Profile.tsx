@@ -10,6 +10,7 @@ import { ProfileAchievements } from "@/components/profile/ProfileAchievements";
 import { toast } from "sonner";
 
 interface ProfileData {
+  id: string;
   username: string;
   full_name: string;
   avatar_url: string;
