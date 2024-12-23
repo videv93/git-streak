@@ -13,9 +13,7 @@ interface Challenge {
   status: "active" | "completed" | "upcoming";
   start_date: string;
   end_date: string;
-  _count?: {
-    participants: number;
-  }
+  participant_count?: number;
 }
 
 const Challenges = () => {
@@ -33,14 +31,24 @@ const Challenges = () => {
         .from('challenges')
         .select(`
           *,
-          _count {
-            participants: challenge_participants(count)
-          }
+          challenge_participants (count)
         `)
         .eq('status', activeTab);
 
       if (error) throw error;
-      setChallenges(data || []);
+
+      // Transform the data to match our Challenge interface
+      const transformedChallenges: Challenge[] = (data || []).map(challenge => ({
+        id: challenge.id,
+        title: challenge.title,
+        description: challenge.description,
+        status: challenge.status,
+        start_date: challenge.start_date,
+        end_date: challenge.end_date,
+        participant_count: challenge.challenge_participants?.[0]?.count || 0
+      }));
+
+      setChallenges(transformedChallenges);
     } catch (error) {
       console.error('Error fetching challenges:', error);
       toast.error("Failed to load challenges");
@@ -139,7 +147,7 @@ const Challenges = () => {
                     <div className="flex items-center gap-4 text-sm">
                       <div className="flex items-center gap-1">
                         <Users className="h-4 w-4" />
-                        <span>{challenge._count?.participants || 0}</span>
+                        <span>{challenge.participant_count || 0}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
