@@ -64,6 +64,17 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
+
+  @keyframes number-count {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
  
 @layer base {
@@ -91,6 +102,10 @@
 
 .contribution-cell:hover {
   transform: scale(1.2);
+}
+
+.stats-number {
+  animation: number-count 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contribution-level-0 {
