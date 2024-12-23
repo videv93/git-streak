@@ -6,7 +6,7 @@ import Dashboard from "@/pages/Dashboard";
 import Profile from "@/pages/Profile";
 import Leaderboard from "@/pages/community/Leaderboard";
 import Challenges from "@/pages/community/Challenges";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from 'sonner';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route path="/community/leaderboard" element={<Leaderboard />} />
           <Route path="/community/challenges" element={<Challenges />} />
         </Routes>
-        <Toaster />
+        <Toaster position="top-right" />
       </Router>
     </ThemeProvider>
   );

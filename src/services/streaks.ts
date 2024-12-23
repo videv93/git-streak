@@ -23,13 +23,13 @@ export const handleCheckIn = async (userId: string) => {
     // Create new check-in
     const { error: insertError } = await supabase
       .from('check_ins')
-      .insert([
+      .insert(
         {
           user_id: userId,
           check_in_date: today,
           commit_count: 1, // This could be fetched from GitHub API in a future enhancement
         },
-      ]);
+      );
 
     if (insertError) throw insertError;
 
