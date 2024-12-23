@@ -1,69 +1,86 @@
-# Welcome to your Lovable project
+# GitStreak 🔥
 
-## Project info
+GitStreak is a SaaS platform that helps developers build and maintain coding consistency through daily check-ins and streak tracking, integrated with GitHub.
 
-**URL**: https://lovable.dev/projects/868b13f2-8ad7-42b8-8169-adfebb3942f1
+## Features ✨
 
-## How can I edit this code?
+### Free Tier
+- 📊 Basic check-in tracking and statistics
+- 🏃‍♂️ Streak tracking and monitoring
+- 👤 Public developer profile
+- 🔗 GitHub integration
+- 🤝 Community features
 
-There are several ways of editing your application.
+### Pro Tier ($5/month)
+- 📈 Advanced analytics
+- 🛡️ Streak protection
+- 🔌 API access
+- 🏆 Custom badges
+- 🚫 Ad-free experience
+- ⚡ Priority support
 
-**Use Lovable**
+### Team Tier ($10/user/month)
+- 📊 Team dashboard
+- 🏢 Organization features
+- 🏆 Private leaderboards
+- 🔑 Admin controls
+- 📊 Team analytics
+- 🎨 Custom branding
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/868b13f2-8ad7-42b8-8169-adfebb3942f1) and start prompting.
+## Getting Started 🚀
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Sign up at [gitstreak.com](https://gitstreak.com)
+2. Connect your GitHub account
+3. Start tracking your daily coding streaks!
 
-**Use your preferred IDE**
+## Tech Stack 💻
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Cloud-based hosting (AWS/GCP)
+- Real-time data processing
+- OAuth 2.0 authentication
+- HTTPS encryption
+- GDPR compliant
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## API Documentation 📖
 
-Follow these steps:
+API documentation is available for Pro and Team tier subscribers at [docs.gitstreak.com](https://docs.gitstreak.com)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Security 🔒
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+GitStreak takes security seriously:
+- OAuth 2.0 implementation
+- Data encryption at rest
+- Regular security audits
+- GDPR compliance
+- Secure HTTPS connections
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Support 💬
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- 📧 Email support: support@gitstreak.com
+- 💭 Community forums: [community.gitstreak.com](https://community.gitstreak.com)
+- 📚 Knowledge base: [help.gitstreak.com](https://help.gitstreak.com)
+- Pro/Team: Live chat support available
 
-**Edit a file directly in GitHub**
+## Contributing 🤝
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
-**Use GitHub Codespaces**
+## Legal 📜
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- [Terms of Service](https://gitstreak.com/terms)
+- [Privacy Policy](https://gitstreak.com/privacy)
+- [Cookie Policy](https://gitstreak.com/cookies)
 
-## What technologies are used for this project?
+## Community 👥
 
-This project is built with .
+- Follow us on [Twitter](https://twitter.com/gitstreak)
+- Join our [Discord](https://discord.gg/gitstreak)
+- Read our [Blog](https://blog.gitstreak.com)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## License
 
-## How can I deploy this project?
+[MIT License](LICENSE)
 
-Simply open [Lovable](https://lovable.dev/projects/868b13f2-8ad7-42b8-8169-adfebb3942f1) and click on Share -> Publish.
+---
 
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Made with ❤️ by the GitStreak Team
