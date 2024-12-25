@@ -7,13 +7,19 @@
 import { createSeedClient } from "@snaplet/seed";
 
 const main = async () => {
-  const seed = await createSeedClient();
+  const seed = await createSeedClient(
+    {
+      dryRun: true,
+    }
+  );
 
   // Truncate all tables in the database
   await seed.$resetDatabase();
 
   // Seed the database with 10 users
   await seed.users((x) => x(10));
+
+  await seed.challenges((x) => x(10));
 
   // Type completion not working? You might want to reload your TypeScript Server to pick up the changes
 
